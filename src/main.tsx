@@ -1,6 +1,10 @@
-
 import { createRoot } from "react-dom/client";
+import 'bootstrap/dist/css/bootstrap.min.css';
+//import { Button } from 'react-bootstrap';
+import './index.css'; 
+import { App } from "./App";
 
-const root = createRoot(document.getElementById("root"));
+const root = createRoot(document.getElementById("root")!);
 
-root.render(<h1></h1>);
+root.render(<App />
+);
