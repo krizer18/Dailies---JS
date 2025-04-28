@@ -14,4 +14,16 @@ app.listen(port, () => console.log('Backend is running on ${port}'))
 app.use(cors());
 app.use(express.json());
 
-const client = new OpenAI({apiKey: process.env.OpenAi_apiKey});
+const key = process.env.OpenAi_apikey;
+
+export async function onclickprompt(){
+    const api_body = {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json",
+            "Authorization" : "Bearer" + key
+        }
+    }
+
+    await fetch("https://api.openai.com/v1/responses")
+}

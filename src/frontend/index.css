@@ -9,3 +9,17 @@ body {
     background-color: #000000;
     color: #FFFFFF;
 }
+
+:root {
+    /* brand colors */
+    --bs-primary:   #ff5722;   /* bright orange */
+    --bs-secondary: #673ab7;   /* deep purple */
+    --bs-success:   #22c55e;   /* emerald */
+    --bs-info:      #00bcd4;   /* cyan */
+    --bs-warning:   #ffc107;   /* amber */
+    --bs-danger:    #e53935;   /* red 600 */
+  
+    /* body background & text */
+    --bs-body-bg:   #D4C9BE;
+    --bs-body-color:#030303;
+  }
