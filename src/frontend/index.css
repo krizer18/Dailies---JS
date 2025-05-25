@@ -23,3 +23,9 @@ body {
     --bs-body-bg:   #D4C9BE;
     --bs-body-color:#030303;
   }
+
+  .box{
+    margin: 5;
+    background-color: #e53935;
+    color: #FFFFFF;
+  }
