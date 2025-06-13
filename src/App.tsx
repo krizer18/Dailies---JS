@@ -22,9 +22,11 @@ export function App(){
     const [country, setCountry]   = useState<string>("");
 
     const handleSubmit = async () => {
-    const fetchedCountry = await getCountry();
-    setCountry(fetchedCountry);
-    const responseText = await onclickprompt(question);
+    if(!country){
+      const fetched = await getCountry();
+      setCountry(fetched);
+    }
+    const responseText = await onclickprompt(question, country);
     setans(responseText);
     };
 
