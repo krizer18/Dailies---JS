@@ -2,7 +2,7 @@ import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
-import countries from "../countries.json"
+import countries from "../../countries.json"
 
 //random country generator
 export function randcount(){

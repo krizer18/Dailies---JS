@@ -1,9 +1,9 @@
-export async function onclickprompt(question: string): Promise<string| null> {
+export async function onclickprompt(question: string, country: string): Promise<string| null> {
     try {
     const response = await fetch("http://localhost:8000/api/prompt", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt: question }),
+      body: JSON.stringify({ prompt: question + " . The country is:" + country }),
     });
 
     if (!response.ok) {
