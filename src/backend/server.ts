@@ -1,10 +1,17 @@
+<<<<<<< HEAD
 import express from "express";
+=======
+import express, { Request, Response } from "express";
+>>>>>>> cf38ded306c5dd1d5aa837ad97c4fe626064a590
 import cors from "cors";
 import dotenv from "dotenv";
 import OpenAI from "openai";
 import countries from "../../countries.json"
+<<<<<<< HEAD
 import {v4 as uuid4} from 'uuid';
 
+=======
+>>>>>>> cf38ded306c5dd1d5aa837ad97c4fe626064a590
 
 //random country generator
 export function randcount(){
@@ -12,16 +19,27 @@ export function randcount(){
     return countries[randomi].name;
 }
 
+<<<<<<< HEAD
+=======
+//generate random country
+export const country = randcount();
+
+>>>>>>> cf38ded306c5dd1d5aa837ad97c4fe626064a590
 //setting up the app
 dotenv.config();
 
 const port = 8000;
 const app = express();
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> cf38ded306c5dd1d5aa837ad97c4fe626064a590
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+<<<<<<< HEAD
 //game session
 interface GameSession {
     country: string;
@@ -131,10 +149,20 @@ app.post("/api/guessmade", async(req, res) => {
 
 const key = process.env.OpenAi_apikey;
 
+=======
+app.get("/api/country", (_req: Request, res: Response) => {
+  res.json({ country });
+});
+
+const key = process.env.OpenAi_apikey;
+
+
+>>>>>>> cf38ded306c5dd1d5aa837ad97c4fe626064a590
 const ai = new OpenAI({
     apiKey: key
 })
 
+<<<<<<< HEAD
 app.post("/api/prompt", async(req, res) => {
 const {game_id, prompt} = req.body;
 try {
@@ -186,5 +214,59 @@ catch(err){
   res.status(500).send(err);
 }
 })
+=======
+ app.post("/api/prompt", async(req, res) => {
+    const {prompt} = req.body;
+    
+    try {
+    const response = await ai.chat.completions.create({
+    model: "gpt-3.5-turbo",
+    messages: [
+       {
+      "role": "system",
+      "content": [
+        {
+          "type": "text",
+          "text": `You are given two words to answer with those being yes or no you may not respond with any other words. The questions you answer are based on the country: ${country} flag. Only answer questions related to the flag. If the question does not relate to the country flag respond with: this question does not pertain to the country's flag.`
+        }
+    ]
+    },
+      {
+        "role" : "assistant",
+        "content" : [
+            {
+                "type" : "text",
+                "text" : `${country}`
+            }
+        ]
+      },
+      {
+        "role" : "user",
+        "content" : [
+            {
+                "type" : "text",
+                "text" : `${prompt}`
+            }
+        ]
+      }
+    ],
+    response_format: {
+        "type": "text"
+    },
+    temperature: 1,
+    max_completion_tokens: 2048,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0
+    })
+    const reply = response.choices[0].message.content;
+    res.json({ message: reply });
+    return;
+    }
+    catch(err){
+        res.status(500).send(err);
+    }
+    })
+>>>>>>> cf38ded306c5dd1d5aa837ad97c4fe626064a590
 
 app.listen(port, () => console.log(`Backend is running on ${port}`));

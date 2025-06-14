@@ -16,4 +16,5 @@ export async function onclickprompt(question: string, country: string): Promise<
     console.error("Fetch error:", err);
     return null;
   };
+  
 }

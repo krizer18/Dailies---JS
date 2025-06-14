@@ -42,8 +42,20 @@ export function App(){
             </button>
         </div>
         <div className="box">The answer to the question is: {ans}</div>
+
+      <textarea onChange = {(e) => setquestion(e.target.value)} className="form-controlg" placeholder="place your guess here"></textarea>
+      <div>
+            <button onClick = {async () => {
+                    _guessplaced()
+                }}
+                type= "button" className="btn btn-success">
+                Submit Guess 
+            </button>
+
+        <div className="guessres">your guess was:</div>
+        </div>
     </div>
-    
+        
 
     )
 }
